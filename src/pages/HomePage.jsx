@@ -13,13 +13,13 @@ export function HomePage() {
 
     // fetch the product data from backend instead of feact('url');
     useEffect(() => {
-        axios.get('http://localhost:3000/api/products')
+        axios.get('/api/products')
             .then((response) => {
                 setProducts(response.data); // updater function of useState()
             })
 
         // request for cart data from backend 
-        axios.get('http://localhost:3000/api/cart-items')
+        axios.get('/api/cart-items')
             .then((response) => {
                 console.log(response.data); // update the cart
                 setCart(response.data); // update the cart
