@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Header } from '../components/Header';
-import './HomePage.css'
-import { resolvePath } from 'react-router';
+import { formatMoney } from '../utils/money';
+import './HomePage.css';
 
 
-export function HomePage( { cart } ) {
+export function HomePage({ cart }) {
     // update the data 
     const [products, setProducts] = useState([]);
-    
+
 
 
     // fetch the product data from backend instead of feact('url');
@@ -18,8 +18,8 @@ export function HomePage( { cart } ) {
                 setProducts(response.data); // updater function of useState()
             })
 
-         
-        
+
+
 
     }, []); // dependency array = helps us to control useEffect() ,here runs only once
 
@@ -27,7 +27,7 @@ export function HomePage( { cart } ) {
     return (
         <>
             <title>Ecommerce Project</title>
-            <Header cart = {cart} />
+            <Header cart={cart} />
             <div className="home-page">
                 <div className="products-grid">
                     {products.map((product) => {
@@ -51,7 +51,7 @@ export function HomePage( { cart } ) {
                                 </div>
 
                                 <div className="product-price">
-                                    ${(product.priceCents / 100).toFixed(2)}
+                                    {formatMoney(product.priceCents)}
                                 </div>
 
                                 <div className="product-quantity-container">

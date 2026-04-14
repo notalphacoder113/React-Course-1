@@ -11,7 +11,7 @@ function App() {
 
     useEffect(() => {
         // request for cart data from backend
-        axios.get('/api/cart-items')
+        axios.get('/api/cart-items?expand=product') // Query paramete = let us add additional info to our request
             .then((response) => {
                 console.log(response.data); // update the cart
                 setCart(response.data); // update the cart
