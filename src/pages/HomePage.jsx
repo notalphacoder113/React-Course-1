@@ -1,16 +1,16 @@
+import axios from 'axios';
 import { Header } from '../components/Header';
 import { products } from '../../starting-code/data/products';
 import './HomePage.css'
 
 
 export function HomePage() {
-    fetch('http://localhost:3000/api/products')
+    // fetch the data from backend instead of feact('url');
+    axios.get('http://localhost:3000/api/products')
     .then((response)=>{
-        return response.json();
+        console.log(response.data);
     })
-    .then((data)=>{
-        console.log(data);
-    })
+    
 
     return (
         <>
