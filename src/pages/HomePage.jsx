@@ -5,10 +5,10 @@ import './HomePage.css'
 import { resolvePath } from 'react-router';
 
 
-export function HomePage() {
+export function HomePage( { cart } ) {
     // update the data 
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
+    
 
 
     // fetch the product data from backend instead of feact('url');
@@ -18,12 +18,8 @@ export function HomePage() {
                 setProducts(response.data); // updater function of useState()
             })
 
-        // request for cart data from backend 
-        axios.get('/api/cart-items')
-            .then((response) => {
-                console.log(response.data); // update the cart
-                setCart(response.data); // update the cart
-            })
+         
+        
 
     }, []); // dependency array = helps us to control useEffect() ,here runs only once
 
