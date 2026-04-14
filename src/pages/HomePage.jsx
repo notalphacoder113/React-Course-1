@@ -2,27 +2,36 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Header } from '../components/Header';
 import './HomePage.css'
+import { resolvePath } from 'react-router';
 
 
 export function HomePage() {
     // update the data 
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
 
 
-    // fetch the data from backend instead of feact('url');
+    // fetch the product data from backend instead of feact('url');
     useEffect(() => {
         axios.get('http://localhost:3000/api/products')
             .then((response) => {
                 setProducts(response.data); // updater function of useState()
             })
-    }, []); // dependency array = helps us to control useEffect() ,here runs only once
 
+        // request for cart data from backend 
+        axios.get('http://localhost:3000/api/cart-items')
+            .then((response) => {
+                console.log(response.data); // update the cart
+                setCart(response.data); // update the cart
+            })
+
+    }, []); // dependency array = helps us to control useEffect() ,here runs only once
 
 
     return (
         <>
             <title>Ecommerce Project</title>
-            <Header />
+            <Header cart = {cart} />
             <div className="home-page">
                 <div className="products-grid">
                     {products.map((product) => {
