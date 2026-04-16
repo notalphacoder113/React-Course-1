@@ -2,6 +2,14 @@
   margin-top: 60px;
 }
 
+.showAddedToCart{
+  color: rgb(6, 181, 20);
+  text-decoration: double;
+  font-weight: bolder;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+
 .home-page .products-grid {
   display: grid;
 
