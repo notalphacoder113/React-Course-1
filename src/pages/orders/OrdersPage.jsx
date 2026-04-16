@@ -8,11 +8,17 @@ import './OrdersPage.css';
 export function OrdersPage({ cart }) {
     const [orders, setOrders] = useState([]);
 
+    // axios : fetch the product data from backend instead of feact('url');
+    // inside useEffect we have to make a new function to use async await , 
+    // because the inner function of useEffect cannot return a promise .
     useEffect(() => {
-        axios.get('/api/orders?expand=products')
-            .then((response) => {
-                setOrders(response.data);
-            });
+        const fetchOrderData = async () => {
+            // request for order details
+            const response = await axios.get('/api/orders?expand=products')
+            setOrders(response.data);
+        };
+
+        fetchOrderData(); // call the async function
     }, []);
 
     return (
@@ -53,7 +59,7 @@ export function OrdersPage({ cart }) {
                                         return (
                                             <Fragment key={orderProduct.product.id}>
                                                 <div className="product-image-container">
-                                                    <img src={orderProduct.product.image}/>
+                                                    <img src={orderProduct.product.image} />
                                                 </div>
 
                                                 <div className="product-details">
@@ -82,7 +88,7 @@ export function OrdersPage({ cart }) {
                                             </Fragment>
                                         );
                                     })}
-                                   
+
                                 </div>
                             </div>
                         );
