@@ -5,7 +5,7 @@ import { ProductsGrid } from './ProductsGrid';
 import './HomePage.css';
 
 
-export function HomePage({ cart }) {
+export function HomePage({ cart , loadCart}) {
     // update the data 
     const [products, setProducts] = useState([]);
 
@@ -27,7 +27,7 @@ export function HomePage({ cart }) {
             <title>Ecommerce Project</title>
             <Header cart={cart} />
             <div className="home-page">
-                <ProductsGrid products={products} />
+                <ProductsGrid products={products} loadCart={loadCart} />
             </div>
         </>
     );

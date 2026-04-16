@@ -9,20 +9,20 @@ import './App.css'
 function App() {
   const [cart, setCart] = useState([]);
 
+  const loadCart = async () => {
+    const response = await axios.get('/api/cart-items?expand=product'); // Query parameter = let us add additional info to our request
+    setCart(response.data); // update the cart
+  };
+
   // inside useEffect we have to make a new function to use async await , 
   // because the inner function of useEffect cannot return a promise .
   useEffect(() => {
-    const fetchAppData = async () => {
-      const response = await axios.get('/api/cart-items?expand=product'); // Query parameter = let us add additional info to our request
-      setCart(response.data); // update the cart
-    };
-
-    fetchAppData(); // call the async function 
+    loadCart(); // call the async function 
   });
 
   return (
     <Routes>
-      <Route index element={<HomePage cart={cart} />} />
+      <Route index element={<HomePage cart={cart} loadCart={loadCart}/>} />
       <Route path='checkout' element={<CheckoutPage cart={cart} />} />
       <Route path='orders' element={<OrdersPage cart={cart} />} />
     </Routes>
