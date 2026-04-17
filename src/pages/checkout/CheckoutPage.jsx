@@ -6,7 +6,7 @@ import { PaymentSummery } from './PaymentSummery';
 import './CheckoutPage.css';
 import './checkout-header.css';
 
-export function CheckoutPage({ cart }) {
+export function CheckoutPage({ cart, loadCart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]); // for devlivery option
     const [paymentSummery, setPaymentSummery] = useState(null); // for payment summery
 
@@ -25,7 +25,7 @@ export function CheckoutPage({ cart }) {
         };
 
         fetchCheckoutData(); // call the async function
-    }, []);
+    }, [cart]);
 
 
     return (
@@ -37,7 +37,7 @@ export function CheckoutPage({ cart }) {
                 <div className="page-title">Review your order</div>
 
                 <div className="checkout-grid">
-                    <OrderSummery deliveryOptions={deliveryOptions} cart={cart} />
+                    <OrderSummery deliveryOptions={deliveryOptions} cart={cart} loadCart={loadCart} />
                     <PaymentSummery paymentSummery={paymentSummery} />
                 </div>
             </div>
