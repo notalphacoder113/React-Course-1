@@ -7,7 +7,7 @@ export function Product({ product, loadCart }) {
     const [quantity, setQuantity] = useState(1);
 
     // implementation : showing add to cart when button is clicked
-    const[showAdded, setShowAdded] = useState(false);
+    const [showAdded, setShowAdded] = useState(false);
 
     // function to add product into cart
     const addToCart = async () => {
@@ -37,6 +37,7 @@ export function Product({ product, loadCart }) {
         <div className="product-container">
             <div className="product-image-container">
                 <img className="product-image"
+                    data-testid="product-image"
                     src={product.image} />
             </div>
 
@@ -46,6 +47,7 @@ export function Product({ product, loadCart }) {
 
             <div className="product-rating-container">
                 <img className="product-rating-stars"
+                    data-testid="product-rating-stars-image"
                     src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
                 <div className="product-rating-count link-primary">
                     {product.rating.count}
@@ -70,7 +72,7 @@ export function Product({ product, loadCart }) {
                     <option value="10">10</option>
                 </select>
             </div>
-            
+
             <div className="showAddedToCart">
                 {showAdded && <p>Added to Cart ✅</p>}
             </div>
